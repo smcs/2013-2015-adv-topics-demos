@@ -1,0 +1,9 @@
+//
+// Prefix header for all source files of the 'OpenGL 01.++ Three Cuboid Objects' target in the 'OpenGL 01.++ Three Cuboid Objects' project
+//
+
+#ifdef __OBJC__
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "ConstantsAndMacros.h"
+#endif

@@ -1,3 +1,5 @@
+// https://github.com/sgothel/jogl-demos/blob/master/src/demos/util/ObjReader.java
+
 /*
  * Copyright (c) 2003 Sun Microsystems, Inc. All Rights Reserved.
  * 

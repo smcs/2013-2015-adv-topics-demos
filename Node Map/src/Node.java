@@ -2,11 +2,11 @@ import java.util.*;
 
 public class Node {
 
-	int id;
-	int p;
-	int Z;
-	int Element;
-	Vector<Bond> bonds;
+	private int id;
+	private int p;
+	private int Z;
+	private int Element;
+	private Vector<Bond> bonds;
 
 	public Node() {
 		bonds = new Vector<Bond>();

@@ -23,7 +23,8 @@ public class ReadATextFile {
 			/*
 			 * do whatever we want with that string -- e.g. split apart the
 			 * words! In this case, we're telling the string to split apart on
-			 * matches to the regular expression \s, which means "whitespace"
+			 * matches to the regular expression \s (note that the slash is
+			 * escaped in the actual string!), which means "whitespace"
 			 */
 			String[] words = currentLine.split("\\s");
 			for (int i = 0; i < words.length; i++) {

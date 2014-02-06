@@ -5,7 +5,12 @@ public class ReadATextFile {
 	public static void main(String[] args) throws IOException {
 		/*
 		 * hook a buffered reader up to the file to do all the heavy
-		 * pre-processing for us
+		 * pre-processing for us -- the file name, BTW, is actually the file
+		 * address relative to the root folder of the project. Which means that
+		 * you can use the . and .. shortcuts to refer to the current directory
+		 * and the parent of the current directory, respectively, to navigate to
+		 * other places. Of course hard-coding file locations isn't always the
+		 * _best_ idea!
 		 */
 		BufferedReader reader = new BufferedReader(new FileReader(
 				"My Text File.txt"));

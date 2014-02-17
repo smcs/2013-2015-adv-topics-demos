@@ -103,7 +103,8 @@ public class ReadAnXmlFile {
 			}
 
 			/*
-			 * we've encountered text content in between tags!
+			 * we've encountered text content in between tags! The "aardvark" in
+			 * <foo>aardvark</foo>, for example.
 			 */
 			case XMLStreamConstants.CHARACTERS: {
 				/*

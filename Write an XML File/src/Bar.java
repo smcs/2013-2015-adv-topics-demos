@@ -3,7 +3,7 @@ import java.util.*;
 public class Bar {
 	private int x, y, z;
 	private double a, b, c;
-	
+
 	public Bar() {
 		Random rand = new Random();
 		setX(rand.nextInt());
@@ -13,13 +13,22 @@ public class Bar {
 		setB(rand.nextDouble());
 		setC(rand.nextDouble());
 	}
-	
+
+	public Bar(int x, int y, int z, double a, double b, double c) {
+		this.x = x;
+		this.y = y;
+		this.z = z;
+		this.a = a;
+		this.b = b;
+		this.c = c;
+	}
+
 	public int setX(int newValue) {
 		int oldValue = x;
 		x = newValue;
 		return oldValue;
 	}
-	
+
 	public int setY(int newValue) {
 		int oldValue = y;
 		y = newValue;
@@ -43,7 +52,7 @@ public class Bar {
 		b = newValue;
 		return oldValue;
 	}
-	
+
 	public double setC(double newValue) {
 		double oldValue = c;
 		c = newValue;
@@ -53,24 +62,29 @@ public class Bar {
 	public int getX() {
 		return x;
 	}
-	
+
 	public int getY() {
 		return y;
 	}
-	
+
 	public int getZ() {
 		return z;
 	}
-	
+
 	public double getA() {
 		return a;
 	}
-	
+
 	public double getB() {
 		return b;
 	}
-	
+
 	public double getC() {
 		return c;
+	}
+
+	public String toString() {
+		return new String("(" + x + ", " + y + ", " + z + "; " + a + ", " + b
+				+ ", " + c + ")");
 	}
 }

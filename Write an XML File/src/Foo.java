@@ -19,6 +19,10 @@ public class Foo {
 				+ verb[Math.abs(rand.nextInt()) % verb.length] + " the "
 				+ object[Math.abs(rand.nextInt()) % object.length] + ".");
 	}
+	
+	public Foo(String value) {
+		this.value = new String(value);
+	}
 
 	public String setValue(String s) {
 		String oldValue = value;
@@ -28,5 +32,9 @@ public class Foo {
 
 	public String getValue() {
 		return new String(value);
+	}
+	
+	public String toString() {
+		return new String("\"" + value + "\"");
 	}
 }

@@ -8,10 +8,10 @@ public class ImageJAsALibrary {
 		 * An opener is just a utility object to open images -- it could easily
 		 * be connected to an open dialog instead of a hard-coded file path
 		 */
-		Opener file = new Opener();
+		Opener opener = new Opener();
 
 		/* An ImagePlus is an object that represents the loaded image */
-		ImagePlus a = file.openImage("images/A.png");
+		ImagePlus a = opener.openImage("images/A.png");
 
 		/*
 		 * the pixel data represents the pixel as RGBA (Red, Green, Blue and

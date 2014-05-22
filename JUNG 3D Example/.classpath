@@ -2,9 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JUNG 2.0.1"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Java3D 1.6.0pre9"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JOGL 2.0"/>
-	<classpathentry kind="lib" path="/Volumes/Home/seth/Dropbox/Library/Application Support/Eclipse/Libraries/Java/jung2-2_0_1/jung-3d-2.0.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

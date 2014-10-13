@@ -20,6 +20,5 @@ public class ImageDisplay extends WindowController {
 		new VisibleImage(png, 10, 10, canvas);
 		new VisibleImage(gif, 60, 10, canvas);
 		new VisibleImage(jpg, 110, 10, canvas);
-		new VisibleImage(web, 10, 70, canvas);
 	}
 }

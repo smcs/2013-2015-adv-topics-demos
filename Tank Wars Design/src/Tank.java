@@ -1,4 +1,7 @@
-public class Tank {
+import objectdraw.DrawingCanvas;
+import objectdraw.Location;
+
+public class Tank extends ObjectThatOccupiesSpace {
 
 	/* instance variables */
 	

@@ -6,7 +6,7 @@ public class Tank extends ObjectThatOccupiesSpace {
 	/* instance variables */
 	
 	private Location centerPoint;
-	private double angle;
+	private double tankHeading;
 	private double speed = 0;
 	private double health = 1;
 	private double overheat = 0;
@@ -49,10 +49,12 @@ public class Tank extends ObjectThatOccupiesSpace {
 	 * speed (hmm... the relationship between forward speed and turning speed
 	 * needs careful consideration)
 	 * 
-	 * @param speed
+	 * @post tankHeading is adjusted based on the turnAmount
+	 * 
+	 * @param turnAmount
 	 *            left is negative and right is positive
 	 */
-	public void turn(int speed) {
+	public void turn(int turnAmount) {
 
 	}
 

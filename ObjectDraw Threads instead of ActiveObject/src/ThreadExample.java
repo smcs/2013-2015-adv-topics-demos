@@ -17,7 +17,7 @@ public class ThreadExample implements Runnable {
 		while (/* some condition */) {
 			/* ... do the thread stuff ... */
 			
-			/* use sleep() instead of paus() */
-			sleep(/* some decent interval */);
+			/* use sleep() instead of pause() */
+			Thread.sleep(/* some decent interval */);
 	}
 }

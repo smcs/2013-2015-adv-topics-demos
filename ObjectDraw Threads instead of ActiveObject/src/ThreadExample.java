@@ -1,11 +1,16 @@
 
 /* implement Thread instead of extending ActiveObject */
-public class ThreadExample implements Thread {
+public class ThreadExample implements Runnable {
 	
 	public ThreadExample() {
-		/* ... do some stuff ... */
+		/* ... initialize stuff ... */
 		
-		start();
+		/* create a new thread that is a copy of what we just set up and start it */
+		new Thread(new ThreadExample(this)).start();
+	}
+	
+	public ThreadExample(ThreadExample original) {
+		/* copy original into this new thread */
 	}
 	
 	public void run() {

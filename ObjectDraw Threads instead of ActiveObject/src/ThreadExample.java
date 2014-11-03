@@ -2,6 +2,9 @@
 /* implement Thread instead of extending ActiveObject */
 public class ThreadExample implements Runnable {
 	
+	private int x;
+	private Foo bar;
+	
 	public ThreadExample() {
 		/* ... initialize stuff ... */
 		
@@ -11,6 +14,8 @@ public class ThreadExample implements Runnable {
 	
 	public ThreadExample(ThreadExample original) {
 		/* copy original into this new thread */
+		x = original.x;
+		bar = original.bar;
 	}
 	
 	public void run() {

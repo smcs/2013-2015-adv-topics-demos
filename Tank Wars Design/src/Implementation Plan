@@ -1,0 +1,14 @@
+Implementation and Testing Design
+
+1. Draw a tank
+	- Does it look like a tank?
+	- Can I draw it anywhere on the screen?
+	- Can I turn it to any heading?
+	- Does it leave a trail or disappear or other bad things when I am "moving" it?
+
+2. Move that tank with the keyboard
+
+General structure:
+
+A. Thing I'm implementing
+	- Criteria to be sure that this thing works

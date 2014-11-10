@@ -9,6 +9,9 @@
 .metadata/.plugins/org.eclipse.core.runtime/.settings/*
 !.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.core.prefs
 
+#### Adv. Topics Add-0ns ####
+.recommenders
+
 #### OS generated files ####
 .DS_Store
 .DS_Store?

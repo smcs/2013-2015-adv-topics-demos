@@ -1,5 +1,8 @@
-# Eclipse
+#### Adv. Topics Add-0ns ####
+.recommenders
 */bin/*
+
+# this heinous-ness allows us to exclude all of .metadata... except for the file that lists the libraries
 .metadata/*
 !.metadata/.plugins
 .metadata/.plugins/*
@@ -8,9 +11,6 @@
 !.metadata/.plugins/org.eclipse.core.runtime/.settings
 .metadata/.plugins/org.eclipse.core.runtime/.settings/*
 !.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.core.prefs
-
-#### Adv. Topics Add-0ns ####
-.recommenders
 
 #### OS generated files ####
 .DS_Store
@@ -44,7 +44,7 @@ hs_err_pid*
 # https://github.com/github/gitignore/blob/master/Global/Eclipse.gitignore
 
 *.pydevproject
-.metadata
+# .metadata
 .gradle
 bin/
 tmp/

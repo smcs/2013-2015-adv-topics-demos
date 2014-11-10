@@ -12,10 +12,15 @@ public class Tank {
 					KeyEvent.VK_N } };
 
 	/**
-	 * The serial number of _this_ tank (note that, because it is static, this
+	 * The serial number of the next tank (note that, because it is static, this
 	 * variable is shared by _all_ tanks at the class level.
 	 */
-	private static int serialNumber = 0;
+	private static int nextSerialNumber = 0;
+	
+	/**
+	 * The serial number of _this_ tank.
+	 */
+	private int serialNumber;
 
 	/**
 	 * _This_ tank's keybinding
@@ -23,12 +28,16 @@ public class Tank {
 	private int keybinding[];
 
 	public Tank() {
+		/*
+		 * save our serial number and then increment the serialNumber counter so the next tank gets a
+		 * _different_ keybinding
+		 */
+		serialNumber = nextSerialNumber;
+		nextSerialNumber++;
+
 		/* pick the next keybinding from the list (we'll run out quickly!) */
 		keybinding = keybindings[serialNumber];
-		
-		/* increment the serialNumber counter so the next tank gets a _different_ keybinding */
-		serialNumber++;
-		
+
 		/* print the keybinding to check our work */
 		System.out.println(keybinding);
 	}

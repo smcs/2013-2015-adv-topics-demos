@@ -18,9 +18,11 @@ public class RotatingImage extends WindowController {
 
 	/**
 	 * Rotates an image by an arbitrary amount of degrees around its center. A
-	 * positive value for <code>degrees</code> will rotate the image clockwise,
-	 * a negative value counterclockwise. An image will be returned with a size
-	 * that exactly fits the rotated image.
+	 * positive value for degrees will rotate the image clockwise, a negative
+	 * value counterclockwise. An image will be returned with a size that
+	 * exactly fits the rotated image.
+	 * 
+	 * 2014-11-11 SDB modified from source to set background color as well
 	 * 
 	 * @link http://udojava.com/tag/awt-image-rotation/
 	 * 
@@ -29,10 +31,13 @@ public class RotatingImage extends WindowController {
 	 * @param degrees
 	 *            The amount in degrees to rotate, a positive value rotates
 	 *            clockwise, a negative counterclockwise.
-	 * @return A new <code>BufferdImage</code> with a new size that exactly fits
-	 *         the rotated image.
+	 * @param backgroundColor
+	 *            The background color of the bounding rectangle.
+	 * @return A new BufferdImage with a new size that exactly fits the rotated
+	 *         image.
 	 */
-	public static BufferedImage rotateImage(BufferedImage src, double degrees) {
+	public static BufferedImage rotateImage(BufferedImage src, double degrees,
+			Color backgroundColor) {
 		double radians = Math.toRadians(degrees);
 		int srcWidth = src.getWidth();
 		int srcHeight = src.getHeight();
@@ -43,6 +48,8 @@ public class RotatingImage extends WindowController {
 		BufferedImage result = new BufferedImage(newWidth, newHeight,
 				src.getType());
 		Graphics2D g = result.createGraphics();
+		g.setPaint(backgroundColor);
+		g.fillRect(0, 0, result.getWidth(), result.getHeight());
 		g.translate((newWidth - srcWidth) / 2, (newHeight - srcHeight) / 2);
 		g.rotate(radians, srcWidth / 2, srcHeight / 2);
 		g.drawRenderedImage(src, null);
@@ -78,9 +85,12 @@ public class RotatingImage extends WindowController {
 
 		/*
 		 * generate a new rotated image based on the original image (to avoid an
-		 * infinitely expanding bounding box)
+		 * infinitely expanding bounding box). Note that setting a color with an
+		 * alpha of zero makes it transparent -- so we are setting a transparent
+		 * background for our bounding box.
 		 */
-		displayedImage.setImage(rotateImage(originalImage, rotation));
+		displayedImage.setImage(rotateImage(originalImage, rotation, new Color(
+				0, 0, 0, 0)));
 
 		/*
 		 * adjust the new displayed image to keep the center in the same

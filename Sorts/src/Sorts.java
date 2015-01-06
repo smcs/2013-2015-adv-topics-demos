@@ -29,15 +29,13 @@ public class Sorts {
 			for (bubbleThumb = 0; bubbleThumb < sorted.size() - 1; bubbleThumb++) {
 				assert (sorted.get(bubbleThumb) != null);
 				assert (sorted.get(bubbleThumb + 1) != null);
-				stat.addRead();
-				stat.addRead();
+				stat.addReads(2);
 				if (sorted.get(bubbleThumb) > sorted.get(bubbleThumb + 1)) {
 					didISwap = true;
 					int temp = sorted.get(bubbleThumb);
 					stat.updateStorage(sorted.size() + 1);
 					sorted.set(bubbleThumb, sorted.get(bubbleThumb + 1));
-					stat.addRead();
-					stat.addRead();
+					stat.addReads(2);
 					stat.addWrite();
 				sorted.set(bubbleThumb + 1, temp);
 				} else {

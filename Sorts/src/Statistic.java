@@ -37,8 +37,16 @@ public class Statistic {
 		reads++;
 	}
 	
+	public void addReads(int reads) {
+		this.reads += reads;
+	}
+	
 	public void addWrite() {
 		writes++;
+	}
+	
+	public void addWrites(int writes) {
+		this.writes += writes;
 	}
 	
 	public String toString() {

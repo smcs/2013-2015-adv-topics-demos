@@ -48,12 +48,26 @@ public class Sorts {
 	}
 
 	public static void main(String[] args) {
-		for (int i = 0; i < 100; i++) {
-			Vector<Integer> mess = Sorting.randomVector(1000);
-			Sorting.printArray(mess);
+		long storageAverage = 0;
+		double runTimeAverage = 0;
+		long readsAverage = 0, writesAverage = 0;
+		for (int i = -1; i < 1000; i++) {
+			Vector<Integer> mess = Sorting.randomVector(10000);
+			//Sorting.printArray(mess);
 			Statistic stat = new Statistic("Bubble Sort", mess.size(), 0, 0);
-			Sorting.printArray(bubbleSort(mess, stat));
+			/*Sorting.printArray(*/bubbleSort(mess, stat)/*)*/;
 			System.out.println(stat);
+			if (i >= 0) {
+				storageAverage = (i * storageAverage + stat.getStorage()) / (i + 1);
+				runTimeAverage = (i * runTimeAverage + stat.getRunTime()) / (i + 1);
+				readsAverage = (i * readsAverage + stat.getReads()) / (i + 1);
+				writesAverage = (i * writesAverage + stat.getWrites()) / (i + 1);
+				System.out.println("After " + (i + 1) + " runs...\n" +
+					"Average storage: " + storageAverage + " bytes\n" +
+					"Average runtime: " + runTimeAverage + " milliseconds\n" +
+					"Average reads/writes: " + readsAverage + " / " + writesAverage + "\n"
+				);
+			}
 		}
 	}
 }

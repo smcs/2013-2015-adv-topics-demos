@@ -57,4 +57,20 @@ public class Statistic {
 				"anguish: " + numberOfBrokenKeyboards + " keyboards broken / " + quantityOfDeveloperTears + " tears shed\n"
 			);
 	}
+	
+	public double getRunTime() {
+		return runTime;
+	}
+	
+	public long getStorage() {
+		return storage;
+	}
+	
+	public int getReads() {
+		return reads;
+	}
+	
+	public int getWrites() {
+		return writes;
+	}
 }

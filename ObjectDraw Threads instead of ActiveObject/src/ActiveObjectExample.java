@@ -12,5 +12,6 @@ public class ActiveObjectExample extends ActiveObject {
 		while (/* some condition */) {
 			/* ... do the thread stuff ... */
 			pause(/* some decent interval */);
+		}
 	}
 }

@@ -1,12 +1,13 @@
 import objectdraw.*;
 
 import java.awt.*;
+import java.awt.event.*;
 import java.awt.image.*;
 import java.io.*;
 
 import javax.imageio.ImageIO;
 
-public class RotatingImage extends WindowController {
+public class RotatingImage extends WindowController implements KeyListener {
 
 	/*
 	 * important to set the BufferedImage to null initially to avoid errors due
@@ -69,6 +70,8 @@ public class RotatingImage extends WindowController {
 		 * #anchors or ?form=requests
 		 */
 		displayedImage = new VisibleImage(originalImage, 75, 75, canvas);
+		
+		canvas.addKeyListener(this);
 	}
 
 	/**
@@ -98,5 +101,45 @@ public class RotatingImage extends WindowController {
 		 */
 		displayedImage.move((oldWidth - displayedImage.getWidth()) / 2.0,
 				(oldHeight - displayedImage.getHeight()) / 2.0);
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		if (e.getKeyChar() == 'j') {
+			rotation += 5;
+		} else if (e.getKeyChar() == 'l') {
+			rotation -= 5;
+		}
+		
+		/* store the location and dimensions of the current image */
+		Location oldOrigin = displayedImage.getLocation();
+		double oldWidth = displayedImage.getWidth();
+		double oldHeight = displayedImage.getHeight();
+
+		/*
+		 * generate a new rotated image based on the original image (to avoid an
+		 * infinitely expanding bounding box). Note that setting a color with an
+		 * alpha of zero makes it transparent -- so we are setting a transparent
+		 * background for our bounding box.
+		 */
+		displayedImage.setImage(rotateImage(originalImage, rotation, new Color(
+				0, 0, 0, 0)));
+
+		/*
+		 * adjust the new displayed image to keep the center in the same
+		 * location as the previous rotation
+		 */
+		displayedImage.move((oldWidth - displayedImage.getWidth()) / 2.0,
+				(oldHeight - displayedImage.getHeight()) / 2.0);
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

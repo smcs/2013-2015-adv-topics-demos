@@ -46,6 +46,33 @@ public class Sorts {
 		stat.stopTimer();
 		return sorted;
 	}
+	
+	public static Vector<Integer> InsertionSort(Vector<Integer> unsorted, Statistic stat) {
+		return null;
+	}
+	
+	public static Vector<Integer> SelectionSort(Vector<Integer> unsorted, Statistic stat) {
+		return null;
+	}
+	
+	public static Vector<Integer> MergeSort(Vector<Integer> unsorted, Statistic stat) {
+		return null;
+	}
+	
+	public static Vector<Integer> Quicksort(Vector<Integer> unsorted, Statistic stat) {
+		Vector<Integer> sorted = new Vector<Integer>(unsorted);
+		stat.startTimer();
+		sorted = Quicksort(sorted, 0, sorted.size() - 1, stat);
+		stat.stopTimer();
+		return sorted;
+	} 
+	
+	public static Vector<Integer> Quicksort(Vector<Integer> sorting, int first, int last, Statistic stat) {
+
+		/* do a lot of work */
+		
+		return sorting;
+	}
 
 	public static void main(String[] args) {
 		long storageAverage = 0;

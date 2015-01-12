@@ -16,7 +16,7 @@ public class Fibonacci {
 	 */
 	public static int fibonacci(int n) {
 		// enforcing precondition
-		if (n < 0) return -1;
+		assert(n>=0);
 		
 		// base case -- does not call itself recursively, is simple enough to solve ourselves
 		if (n == 1 || n == 0) return 1;

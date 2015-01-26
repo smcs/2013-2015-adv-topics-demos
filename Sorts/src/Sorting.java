@@ -27,11 +27,11 @@ public class Sorting {
 	}
 
 	/**
-	 * Shift all the elements from v[first+1] to v[last] to the left one space,
-	 * overwriting (and losing) the value in v[first]. The element in v[last[
-	 * will remain untouched (so v[last] will be a duplicate of v[last-1]).
-	 * 
 	 * @precondition first and last are both valid indices in v
+	 * @postcondition Shift all the elements from v[first+1] to v[last] to the
+	 *                left one space, overwriting (and losing) the value in
+	 *                v[first]. The element in v[last[ will remain untouched (so
+	 *                v[last] will be a duplicate of v[last-1]).
 	 * 
 	 * @param v
 	 * @param first
@@ -49,11 +49,11 @@ public class Sorting {
 	}
 
 	/**
-	 * Shift all the elements from v[first] to v[last-1] to the right one space,
-	 * overwriting (and losing) the value in v[last]. The element in v[first]
-	 * will remain untouched (so v[first] will be a duplicate of v[first+1]).
-	 * 
 	 * @precondition first and last are both valid indices in v
+	 * @postcondition Shift all the elements from v[first] to v[last-1] to the
+	 *                right one space, overwriting (and losing) the value in
+	 *                v[last]. The element in v[first] will remain untouched (so
+	 *                v[first] will be a duplicate of v[first+1]).
 	 * 
 	 * @param v
 	 * @param first

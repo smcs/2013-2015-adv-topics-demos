@@ -1,11 +1,12 @@
 
 public class Statistic {
-	private int numberOfBrokenKeyboards, quantityOfDeveloperTears;
-	private int n; // number of elements
-	private double runTime, start, stop; // in milliseconds
-	private long storage; // in bytes
-	private int reads, writes;
-	private String algorithm;
+	protected int numberOfBrokenKeyboards, quantityOfDeveloperTears;
+	protected int n; // number of elements
+	private long start, stop; // in milliseconds
+	protected long runTime; // in milliseconds
+	protected long storage; // in bytes
+	protected long reads, writes;
+	protected String algorithm;
 	
 	public Statistic(String algorithm, int n, int keyboards, int tears) {
 		this.algorithm = algorithm;
@@ -18,18 +19,12 @@ public class Statistic {
 		runTime = 0;
 	}
 	
-	public void updateStorage(long newStorage) {
-		if (newStorage > storage) {
-			storage = newStorage;
-		}
-	}
-	
 	public void startTimer() {
-		start = System.currentTimeMillis();
+		start = System.nanoTime();
 	}
 	
 	public void stopTimer() {
-		stop = System.currentTimeMillis();
+		stop = System.nanoTime();
 		runTime = stop - start;
 	}
 	
@@ -37,7 +32,7 @@ public class Statistic {
 		reads++;
 	}
 	
-	public void addReads(int reads) {
+	public void addReads(long reads) {
 		this.reads += reads;
 	}
 	
@@ -45,20 +40,20 @@ public class Statistic {
 		writes++;
 	}
 	
-	public void addWrites(int writes) {
+	public void addWrites(long writes) {
 		this.writes += writes;
 	}
 	
 	public String toString() {
 		return new String(
 				algorithm + ": " + n + " elements\n" +
-				"runtime: " + runTime + " milliseconds\n" +
-				"storage: " + storage + " bytes max, " + reads + " reads, " + writes + " writes\n" +
+				"runtime: " + runTime + " nanoseconds\n" +
+				"storage: " + storage + " <Integer> max, " + reads + " reads, " + writes + " writes\n" +
 				"anguish: " + numberOfBrokenKeyboards + " keyboards broken / " + quantityOfDeveloperTears + " tears shed\n"
 			);
 	}
 	
-	public double getRunTime() {
+	public long getRunTime() {
 		return runTime;
 	}
 	
@@ -66,11 +61,35 @@ public class Statistic {
 		return storage;
 	}
 	
-	public int getReads() {
+	public long getReads() {
 		return reads;
 	}
 	
-	public int getWrites() {
+	public long getWrites() {
 		return writes;
+	}
+	
+	public void setRunTime(long runTime) {
+		this.runTime = runTime;
+	}
+	
+	public void setStorage(long storage) {
+		this.storage = storage;
+	}
+	
+	public void setReads(long reads) {
+		this.reads = reads;
+	}
+	
+	public void setWrites(long writes) {
+		this.writes = writes;
+	}
+
+	public void addStorage(long size) {
+		storage += size;
+	}
+
+	public String getAlgorithm() {
+		return algorithm;
 	}
 }

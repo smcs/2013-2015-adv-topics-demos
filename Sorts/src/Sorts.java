@@ -1,100 +1,78 @@
 import java.util.*;
 
 public class Sorts {
-	
-	/**
-	 * Perform a a bubble sort on an array of presumptively unsorted integers
-	 * 
-	 * @param unsorted
-	 *            the array to be sorted
-	 * @return a sorted array
-	 * @pre unsorted is unsorted, all elements in unsorted are assigned integer
-	 *      values
-	 * @post unsorted is unchanged
-	 */
-	public static Vector<Integer> bubbleSort(Vector<Integer> unsorted, Statistic stat) {
-		Vector<Integer> sorted = new Vector<Integer>(unsorted);
-		stat.updateStorage(unsorted.size());
-		boolean didISwap = false;
-		int bubbleThumb;
 
-		/* keep repeating until we have no more swaps to make */
-		stat.startTimer();
-		do {
-			didISwap = false;
-			/*
-			 * one pass through the array, floating the current highest value to
-			 * the end
-			 */
-			for (bubbleThumb = 0; bubbleThumb < sorted.size() - 1; bubbleThumb++) {
-				assert (sorted.get(bubbleThumb) != null);
-				assert (sorted.get(bubbleThumb + 1) != null);
-				stat.addReads(2);
-				if (sorted.get(bubbleThumb) > sorted.get(bubbleThumb + 1)) {
-					didISwap = true;
-					int temp = sorted.get(bubbleThumb);
-					stat.updateStorage(sorted.size() + 1);
-					sorted.set(bubbleThumb, sorted.get(bubbleThumb + 1));
-					stat.addReads(2);
-					stat.addWrite();
-				sorted.set(bubbleThumb + 1, temp);
-				} else {
-					// thumb moves over 1, without a swap
-				}
-			}
-		} while (didISwap);
-		stat.stopTimer();
-		return sorted;
-	}
-	
-	public static Vector<Integer> InsertionSort(Vector<Integer> unsorted, Statistic stat) {
-		return null;
-	}
-	
-	public static Vector<Integer> SelectionSort(Vector<Integer> unsorted, Statistic stat) {
-		return null;
-	}
-	
-	public static Vector<Integer> MergeSort(Vector<Integer> unsorted, Statistic stat) {
-		return null;
-	}
-	
-	public static Vector<Integer> Quicksort(Vector<Integer> unsorted, Statistic stat) {
-		Vector<Integer> sorted = new Vector<Integer>(unsorted);
-		stat.startTimer();
-		sorted = Quicksort(sorted, 0, sorted.size() - 1, stat);
-		stat.stopTimer();
-		return sorted;
-	} 
-	
-	public static Vector<Integer> Quicksort(Vector<Integer> sorting, int first, int last, Statistic stat) {
-
-		/* do a lot of work */
-		
-		return sorting;
-	}
+	public static final int N = 1000;
+	public static final int RUNS = 100;
 
 	public static void main(String[] args) {
-		long storageAverage = 0;
-		double runTimeAverage = 0;
-		long readsAverage = 0, writesAverage = 0;
-		for (int i = -1; i < 1000; i++) {
-			Vector<Integer> mess = Sorting.randomVector(10000);
-			//Sorting.printArray(mess);
-			Statistic stat = new Statistic("Bubble Sort", mess.size(), 0, 0);
-			/*Sorting.printArray(*/bubbleSort(mess, stat)/*)*/;
-			System.out.println(stat);
-			if (i >= 0) {
-				storageAverage = (i * storageAverage + stat.getStorage()) / (i + 1);
-				runTimeAverage = (i * runTimeAverage + stat.getRunTime()) / (i + 1);
-				readsAverage = (i * readsAverage + stat.getReads()) / (i + 1);
-				writesAverage = (i * writesAverage + stat.getWrites()) / (i + 1);
-				System.out.println("After " + (i + 1) + " runs...\n" +
-					"Average storage: " + storageAverage + " bytes\n" +
-					"Average runtime: " + runTimeAverage + " milliseconds\n" +
-					"Average reads/writes: " + readsAverage + " / " + writesAverage + "\n"
-				);
+		SortingAlgorithm bubbleSort, insertionSort, selectionSort, mergeSort, mergeSortInPlace, quicksort;
+		Vector<Integer> unsorted;
+
+		bubbleSort = new BubbleSort();
+		insertionSort = new InsertionSort();
+		selectionSort = new SelectionSort();
+		mergeSort = new MergeSort();
+		mergeSortInPlace = new MergeSortInPlace();
+		quicksort = new Quicksort();
+		
+		for (int i = 0; i < RUNS; i++) {
+			System.out.println(unsorted = Sorts.shuffledVector(N));
+			System.out.println(bubbleSort.sort(unsorted));
+			System.out.println(insertionSort.sort(unsorted));
+			System.out.println(selectionSort.sort(unsorted));
+			System.out.println(mergeSort.sort(unsorted));
+			System.out.println(mergeSortInPlace.sort(unsorted));
+			System.out.println(quicksort.sort(unsorted));
+			System.out.println("---------");
+		}
+		System.out.println("After " + RUNS + " runs:");
+		System.out.println(bubbleSort.getAverage());
+		System.out.println(insertionSort.getAverage());
+		System.out.println(selectionSort.getAverage());
+		System.out.println(mergeSort.getAverage());
+		System.out.println(mergeSortInPlace.getAverage());
+		System.out.println(quicksort.getAverage());
+	}
+
+	public static Vector<Integer> randomVector(int size) {
+		Vector<Integer> v = new Vector<Integer>();
+		for (int i = 0; i < size; i++) {
+			v.add((int) (Math.random() * size));
+		}
+		return v;
+	}
+
+	public static Vector<Integer> shuffledVector(int size) {
+		Vector<Integer> v = new Vector<Integer>();
+		for (int i = 0; i < size; i++) {
+			v.add(i);
+		}
+		for (int i = 0; i < Math.pow(size, 2); i++) {
+			int a = (int) (Math.random() * size);
+			int b = (int) (Math.random() * size);
+			if (a != b) {
+				int temp = v.get(a);
+				v.set(a, v.get(b));
+				v.set(b, temp);
 			}
 		}
+		return v;
+	}
+
+	public static void printArray(Vector<Integer> v) {
+		for (int i = 0; i < v.size(); i++) {
+			System.out.print(v.get(i) + " ");
+		}
+		System.out.println();
+	}
+
+	public static boolean isSorted(Vector<Integer> v) {
+		for (int i = 0; i < v.size() - 1; i++) {
+			if (v.get(i) > v.get(i + 1)) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

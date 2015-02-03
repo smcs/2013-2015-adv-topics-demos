@@ -18,16 +18,24 @@ public class Heap<T extends Comparable<T>> {
 	private int rightChild(int index) {
 		return index * 2 + 2;
 	}
+	
+	private void swap (int indexA, int indexB) {
+		T temp = heap.get(indexA);
+		heap.set(indexA, heap.get(indexB));
+		heap.set(indexB, temp);
+	}
 
 	public void add(T data) {
 		heap.addElement(data);
 		int newElementIndex = heap.size() - 1;
 		int parentIndex = parent(newElementIndex);
 		while (newElementIndex > 0 && heap.get(newElementIndex).compareTo(heap.get(parentIndex)) > 0) {
-			T temp = heap.get(newElementIndex);
-			heap.set(newElementIndex, heap.get(parentIndex));
-			heap.set(parentIndex, temp);
+			swap(newElementIndex, parentIndex);
 			newElementIndex = parentIndex;
 		}
+	}
+	
+	public T decapitate() {
+		
 	}
 }

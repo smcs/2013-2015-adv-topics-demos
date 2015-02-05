@@ -39,12 +39,62 @@ public class Heap<T extends Comparable<T>> {
 	public T decapitate() {
 		T returnValue = heap.get(0);
 
-		// ....
+		// get last and put on top
+		heap.set(0, heap.remove(heap.size() - 1));
+
+		// compare our "current" node to children, if current node is bigger...
+		// we're done!
+		// however, if either child is bigger, swap with the larger child
+		int currentIndex = 0;
+		while ((leftChild(currentIndex) < heap.size() && heap.get(currentIndex)
+				.compareTo(heap.get(leftChild(currentIndex))) < 0)
+				|| (rightChild(currentIndex) < heap.size() && heap.get(
+						currentIndex).compareTo(
+						heap.get(rightChild(currentIndex))) < 0)) {
+			if (rightChild(currentIndex) < heap.size()
+					&& heap.get(rightChild(currentIndex)).compareTo(
+							heap.get(leftChild(currentIndex))) > 0) {
+				swap(currentIndex, rightChild(currentIndex));
+				currentIndex = rightChild(currentIndex);
+			} else {
+				swap(currentIndex, leftChild(currentIndex));
+				currentIndex = leftChild(currentIndex);
+			}
+		}
 
 		return returnValue;
 	}
 
 	public String toString() {
-		return heap.toString();
+		// find widest number by converting @ number to string and keeping the
+		// maximum
+		String temp;
+		int maxWidth = 1;
+		for (int i = 0; i < heap.size(); i++) {
+			temp = heap.get(i).toString();
+			if (temp.length() > maxWidth) {
+				maxWidth = temp.length();
+			}
+		}
+
+		int levels = (int) (Math.log(heap.size()) / Math.log(2));
+		int levelStart = (int) (Math.pow(2, levels) - 1);
+		
+		String result = "";
+		for (int i = levelStart; i < heap.size(); i++) {
+			result += String.format("%1$" + maxWidth + "s", heap.get(i).toString()) + " ";
+		}
+		
+		levels--;
+		levelStart = (int) (Math.pow(2, levels) - 1);
+		
+		String level = "";
+		for (int i = levelStart; i < Math.pow(2, levels + 1) - 1; i++) {
+			level += String.format("%1$" + maxWidth + "s", heap.get(i).toString()) + " ";
+		}
+		result = level + "\n" + result;
+
+		
+		return result;
 	}
 }

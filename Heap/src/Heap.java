@@ -77,24 +77,43 @@ public class Heap<T extends Comparable<T>> {
 			}
 		}
 
-		int levels = (int) (Math.log(heap.size()) / Math.log(2));
-		int levelStart = (int) (Math.pow(2, levels) - 1);
-		
 		String result = "";
-		for (int i = levelStart; i < heap.size(); i++) {
-			result += String.format("%1$" + maxWidth + "s", heap.get(i).toString()) + " ";
-		}
-		
-		levels--;
-		levelStart = (int) (Math.pow(2, levels) - 1);
-		
-		String level = "";
-		for (int i = levelStart; i < Math.pow(2, levels + 1) - 1; i++) {
-			level += String.format("%1$" + maxWidth + "s", heap.get(i).toString()) + " ";
-		}
-		result = level + "\n" + result;
 
-		
+		int numWidth = maxWidth + 1;
+		for (
+				int level = (int) (Math.log(heap.size()) / Math.log(2));
+				level >= 0;
+				level--
+			) {
+			String row = "";
+			String connectors = "";
+			boolean connectorToRight = true;
+			for (
+					int node = (int) (Math.pow(2, level) - 1);
+					node < Math.pow(2, level + 1) - 1 && node < heap.size();
+					node++
+				) {
+				if (node == (int) (Math.pow(2, level))) {
+					numWidth = (int) (numWidth * 1.5);
+				} else if (node == (int) (Math.pow(2, level) - 1)) {
+					numWidth = (int) (numWidth * (4.0/3.0));
+				}
+				row += String.format("%1$" + numWidth + "s", heap.get(node).toString());
+				if (connectorToRight) {
+					connectors += String.format("%1$" + numWidth + "s", "/");
+				} else {
+					connectors += String.format("%1$" + numWidth + "s", "\\");
+				}
+				connectorToRight = !connectorToRight;
+			}
+			if (level == 0) {
+				result = row + "\n" + result;
+			} else {
+				result = connectors + "\n" + row + "\n" + result;
+			}
+
+		}
+
 		return result;
 	}
 }

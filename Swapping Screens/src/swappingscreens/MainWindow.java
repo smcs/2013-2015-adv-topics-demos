@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 public class MainWindow extends JFrame {
 
 	private JPanel homeScreen;
+	private ScreenSwapper screenSwapper;
 
 	/**
 	 * Launch the application.
@@ -37,6 +38,7 @@ public class MainWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public MainWindow() {
+		screenSwapper = new ScreenSwapper(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		homeScreen = new JPanel();
@@ -50,14 +52,8 @@ public class MainWindow extends JFrame {
 		homeScreen.add(lblHomeScreen);
 		
 		JButton btnNewButton = new JButton("Second Screen");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JPanel secondScreen = new SecondScreen();
-				setContentPane(secondScreen);
-				secondScreen.revalidate();
-				secondScreen.repaint();
-			}
-		});
+		screenSwapper.registerScreen("Second Screen", SecondScreen.class);
+		btnNewButton.addActionListener(screenSwapper);
 		btnNewButton.setBounds(99, 129, 117, 29);
 		homeScreen.add(btnNewButton);
 	}

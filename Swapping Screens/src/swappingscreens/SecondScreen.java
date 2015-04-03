@@ -1,20 +1,26 @@
 package swappingscreens;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+
 import java.awt.Color;
 import java.awt.Component;
+
 import javax.swing.Box;
 import javax.swing.border.BevelBorder;
 
 public class SecondScreen extends JPanel {
 
+	private ScreenSwapper screenSwapper;
+	
 	/**
 	 * Create the panel.
 	 */
 	public SecondScreen() {
 		setBackground(Color.RED);
 		setLayout(null);
+		screenSwapper = new ScreenSwapper(this);
 		
 		Box horizontalBox = Box.createHorizontalBox();
 		horizontalBox.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -38,6 +44,13 @@ public class SecondScreen extends JPanel {
 		
 		Component horizontalGlue_1 = Box.createHorizontalGlue();
 		horizontalBox.add(horizontalGlue_1);
+		
+		JButton btnNewButton = new JButton("Third Screen");
+		screenSwapper.registerScreen("Third Screen", ThirdScreen.class);
+		btnNewButton.addActionListener(screenSwapper);
+		btnNewButton.setBounds(99, 129, 117, 29);
+		add(btnNewButton);
+
 
 	}
 }

@@ -7,17 +7,18 @@ import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 public class ScreenSwapper implements ActionListener {
 
 	/* the window in which we're swapping out the Jpanel */
-	private JFrame mainWindow;
+	private JPanel panel;
 
 	/* a list of button commands and their associated JPanels */
 	private Map<String, Class> screens;
 
-	public ScreenSwapper(JFrame window) {
-		mainWindow = window;
+	public ScreenSwapper(JPanel panel) {
+		this.panel = panel;
 		screens = new HashMap<String, Class>();
 	}
 
@@ -38,7 +39,7 @@ public class ScreenSwapper implements ActionListener {
 			 * swap in the new JPanel, remembering to repaint it so that we can
 			 * see it
 			 */
-			mainWindow.setContentPane(replacement);
+			((JFrame) SwingUtilities.getWindowAncestor(panel)).setContentPane(replacement);
 			replacement.revalidate();
 			replacement.repaint();
 

@@ -38,7 +38,6 @@ public class MainWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public MainWindow() {
-		screenSwapper = new ScreenSwapper(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		homeScreen = new JPanel();
@@ -46,6 +45,7 @@ public class MainWindow extends JFrame {
 		homeScreen.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(homeScreen);
 		homeScreen.setLayout(null);
+		screenSwapper = new ScreenSwapper(homeScreen);
 		
 		JLabel lblHomeScreen = new JLabel("Home Screen");
 		lblHomeScreen.setBounds(115, 69, 101, 16);

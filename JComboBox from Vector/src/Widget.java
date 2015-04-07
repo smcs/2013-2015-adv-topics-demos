@@ -8,6 +8,6 @@ public class Widget {
 	}
 
 	public String toString() {
-		return name.substring(2, 3);
+		return name;
 	}
 }

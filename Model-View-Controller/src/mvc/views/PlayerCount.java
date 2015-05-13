@@ -19,20 +19,20 @@ public class PlayerCount extends JPanel {
 				JLabel lblPlayerCount = new JLabel("How many players?");
 				add(lblPlayerCount);
 
-		JTextField playerCount = new JTextField("2");
+		JTextField playerCount = new JTextField(String.valueOf(world.getPlayerCount()));
 		add(playerCount);
 		playerCount.setColumns(5);
 
 		JLabel lblToolCount = new JLabel("Starting # of tools?");
 		add(lblToolCount);
 
-		JTextField toolCount = new JTextField("3");
+		JTextField toolCount = new JTextField(String.valueOf(world.getToolCount()));
 		add(toolCount);
 		toolCount.setColumns(5);
 
 		JButton btnDone = new JButton("Get creatin'");
 		
-		btnDone.addActionListener(new PlayerCountController(world, home, playerCount));
+		btnDone.addActionListener(new PlayerCountController(world, home, playerCount, toolCount));
 		add(btnDone);
 
 	}

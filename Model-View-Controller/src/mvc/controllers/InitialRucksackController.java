@@ -33,7 +33,7 @@ public class InitialRucksackController implements ActionListener {
 			next.revalidate();
 			next.repaint();
 		} else {
-			JOptionPane.showMessageDialog(home, "You must choose three tools.",
+			JOptionPane.showMessageDialog(home, "You must choose " + world.getToolCount() + " tools.",
 					"Keep working", JOptionPane.ERROR_MESSAGE);
 		}
 	}

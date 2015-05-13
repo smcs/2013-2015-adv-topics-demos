@@ -22,14 +22,10 @@ public class InitialRucksack extends JPanel {
 		JLabel lblPlayerName = new JLabel(controller.getPlayer().getName() + "'s Rucksack");
 		add(lblPlayerName);
 		
-		JPanel item1 = new InitialRucksackItem(world, controller.getPlayer());
-		add(item1);
-		
-		JPanel item2 = new InitialRucksackItem(world, controller.getPlayer());
-		add(item2);
-		
-		JPanel item3 = new InitialRucksackItem(world, controller.getPlayer());
-		add(item3);
+		for (int i = 0; i < world.getToolCount(); i++) {
+			JPanel item = new InitialRucksackItem(world, controller.getPlayer());
+			add(item);
+		}
 		
 		JButton btnDone = new JButton("Claim Tools");
 		if (controller.getPlayerNumber() == world.getPlayerCount()) {

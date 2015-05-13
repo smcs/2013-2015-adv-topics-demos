@@ -2,15 +2,21 @@ package mvc.models;
 
 import java.util.*;
 
+import javax.swing.*;
+
 public class World {
+
+	public static final int DEFAULT_PLAYER_COUNT = 2, DEFAULT_TOOL_COUNT = 3;
 
 	private Vector<Player> players;
 	private Vector<Tool> tools;
-	private int playerCount = 1;
+	private int playerCount, toolCount;
 
 	public World() {
 		players = new Vector<Player>();
 		tools = new Vector<Tool>();
+		setPlayerCount(DEFAULT_PLAYER_COUNT);
+		setToolCount(DEFAULT_TOOL_COUNT);
 	}
 
 	public boolean addPlayer(Player p) {
@@ -28,23 +34,52 @@ public class World {
 		return null;
 	}
 
-	public boolean validatePlayerCount(int count) {
-		return count > 0;
+	public static boolean validatePlayerCount(int count) {
+		return validatePlayerCount(count, null);
+	}
+
+	public static boolean validatePlayerCount(int count, JFrame home) {
+		if (count > 0) {
+			return true;
+		} else {
+			JOptionPane.showMessageDialog(home,
+					"Please choose at least 1 tool.", "Try again",
+					JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+	}
+
+	public static boolean validateToolCount(int count) {
+		return validateToolCount(count, null);
+	}
+
+	public static boolean validateToolCount(int count, JFrame home) {
+		if (count > 0) {
+			return true;
+		} else {
+			JOptionPane.showMessageDialog(home,
+					"Please choose at least 1 player.", "Try again",
+					JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
 	}
 
 	public int setPlayerCount(int newCount) {
 		int oldCount = playerCount;
 		if (validatePlayerCount(newCount)) {
 			playerCount = newCount;
-			
-			/* make sure that we have enough tools for all the players to pick 3 */
-			if (tools.size() < playerCount * 3 + 1) {
-				for (int i = tools.size(); i < playerCount * 3 + 1; i++) {
-					addTool(new Tool("Tool " + (i + 1)));
-				}
-			}
+			expandToolSupply();
 		}
 		return oldCount;
+	}
+
+	private void expandToolSupply() {
+		/* make sure that we have enough tools for all the players to pick 3 */
+		if (tools.size() < playerCount * toolCount + 1) {
+			for (int i = tools.size(); i < playerCount * toolCount + 1; i++) {
+				addTool(new Tool("Tool " + (i + 1)));
+			}
+		}
 	}
 
 	public int getPlayerCount() {
@@ -69,5 +104,18 @@ public class World {
 			return true;
 		}
 		return false;
+	}
+
+	public int setToolCount(int newCount) {
+		int oldCount = toolCount;
+		if (validateToolCount(newCount)) {
+			toolCount = newCount;
+			expandToolSupply();
+		}
+		return oldCount;
+	}
+
+	public int getToolCount() {
+		return toolCount;
 	}
 }

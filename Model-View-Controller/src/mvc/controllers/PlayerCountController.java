@@ -12,27 +12,27 @@ public class PlayerCountController implements ActionListener {
 	private World world;
 
 	private JFrame home;
-	private JTextField playerCount;
+	private JTextField playerCount, toolCount;
 
 	public PlayerCountController(World world, JFrame home,
-			JTextField playerCount) {
+			JTextField playerCount, JTextField toolCount) {
 		this.world = world;
 		this.home = home;
 		this.playerCount = playerCount;
+		this.toolCount = toolCount;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (world.validatePlayerCount(Integer.valueOf(playerCount.getText()))) {
+		if (World.validatePlayerCount(Integer.valueOf(playerCount.getText()))
+				&& World.validateToolCount(Integer.valueOf(toolCount.getText()))) {
 			world.setPlayerCount(Integer.valueOf(playerCount.getText()));
+			world.setToolCount(Integer.valueOf(toolCount.getText()));
 			JPanel next = new PlayerName(world, home);
 			home.setContentPane(next);
 			next.revalidate();
 			next.repaint();
-		} else {
-			JOptionPane.showMessageDialog(home,
-					"Please choose at least 1 player.", "Try again",
-					JOptionPane.ERROR_MESSAGE);
+
 		}
 	}
 }

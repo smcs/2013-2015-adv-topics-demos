@@ -31,7 +31,7 @@ public class PlayerNameController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (player.validateName(playerName.getText())) {
+		if (Player.validateName(playerName.getText(), home)) {
 			player.setName(playerName.getText());
 			JPanel next;
 			if (playerNumber == world.getPlayerCount()) {
@@ -42,10 +42,6 @@ public class PlayerNameController implements ActionListener {
 			home.setContentPane(next);
 			next.revalidate();
 			next.repaint();
-		} else {
-			JOptionPane.showMessageDialog(home,
-					"Please enter a name for your player.", "Try again",
-					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

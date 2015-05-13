@@ -2,6 +2,8 @@ package mvc.models;
 
 import java.util.*;
 
+import javax.swing.*;
+
 public class Player {
 
 	protected Vector<Tool> rucksack;
@@ -11,8 +13,19 @@ public class Player {
 		rucksack = new Vector<Tool>();
 	}
 	
-	public boolean validateName(String name) {
-		return name.length() > 0;
+	public static boolean validateName(String name) {
+		return validateName(name, null);
+	}
+	
+	public static boolean validateName(String name, JFrame home) {
+		if (name.length() > 0) {
+			return true;
+		} else {
+			JOptionPane.showMessageDialog(home,
+					"Please enter a name for your player.", "Try again",
+					JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
 	}
 	
 	public String setName(String newName) {

@@ -5,8 +5,8 @@ import javax.swing.*;
 import mvc.controllers.*;
 import mvc.models.*;
 
+import java.awt.*;
 import java.awt.event.*;
-import java.awt.FlowLayout;
 
 public class PlayerCount extends JPanel {
 

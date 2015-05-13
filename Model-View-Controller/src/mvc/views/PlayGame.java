@@ -3,8 +3,8 @@ package mvc.views;
 import javax.swing.*;
 
 import mvc.models.*;
-import java.awt.Color;
-import java.awt.Font;
+
+import java.awt.*;
 
 public class PlayGame extends JPanel {
 
